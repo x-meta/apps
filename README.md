@@ -11,8 +11,23 @@
 ### 安装教程
 需要[Java](https://www.oracle.com/java/technologies/)和[Maven](https://maven.apache.org/)，请自行安装Java和Maven，需要在系统终端里能够直接执行java和mvn两个命令。
 
-1.  克隆或者下载本项目。
-2.  本项目包含多个应用，在系统终端里进入其中一个应用，执行setup.cmd或setup.sh来安装应用。如果要执行setup.sh可能需要先设置为可执行，执行chmod 775 setup.sh命令设置setup.sh为可执行。
+#### 1. 安装
+
+a.  克隆或者下载本项目。
+b.  本项目包含多个应用，在系统终端里进入其中一个应用，执行setup.cmd或setup.sh来安装应用。如果要执行setup.sh可能需要先设置为可执行，执行chmod 775 setup.sh命令设置setup.sh为可执行。
+
+#### 2. 升级
+
+更新本项目，获取最新代码，在系统终端里执行下面命令。
+
+```
+mvn clean
+setup.cmd或setup.sh
+```
+mvn clean命令会清空./lib/mvn/目录，setup.cmd或setup.sh会重新拷贝依赖到./lib/mvn/目录下。
+
+#### 3. 添加其它类库
+可以修改pom.xml添加其它类库，也可以把类库拷贝到./lib/目录下。
 
 ### 使用说明
 #### 1. 模型编辑器

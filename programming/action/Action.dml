@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ActionThing name="Action" descriptors="xworker.lang.ActionThing" mode="edit">
+    <Println name="Println" message="Hello World!"></Println>
+</ActionThing>

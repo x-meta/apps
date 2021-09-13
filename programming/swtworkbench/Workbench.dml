@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Workbench descriptors="xworker.swt.app.Workbench">
+    <Views>
+        <View name="fileExplorer" id="fileExplorer" type="left" composite="xworker.swt.app.views.FileTree/@menuTree"
+             closeable="false"></View>
+        <View name="outline" id="outline" type="right" composite="xworker.swt.app.views.Outline/@outlineMainComposite"
+             closeable="false"></View>
+        <View name="console" id="console" type="bottom" composite="xworker.swt.component.components.ProcessManager"
+             closeable="false"></View>
+    </Views>
+    <Menu>
+        <MenuItem name="fileMenuItem" text="lang:d=文件&amp;en=File" style="CASCADE">
+            <Menu name="fileMenu">
+                <MenuItem name="restartMenuItem" text="lang:d=重启&amp;en=Restart" style="PUSH">
+                    <listeners>
+                        <Listener name="restsartMenuItemSelection">
+                            <GroovyAction name="restart" descriptors="xworker.lang.actions.GroovyAction">
+                                <code><![CDATA[import org.xmeta.ActionContext;
+import org.xmeta.util.UtilResource;
+import org.xmeta.ui.session.SessionManager;
+
+import xworker.util.XWorkerUtils;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+//当有编辑器未保存时，不重启
+if(workbench.getEditorContainer() != null && workbench.getEditorContainer().isDirty()){
+    saveDialog(actionContext);
+    return;
+}
+
+//重新启动Workbench
+def thing =  workbench.getThing();
+def oldWorkbench = workbench;
+//为避免系统退出，先建一个shell，保证不会触发最后一个Shell退出时系统退出
+	Shell shell = new Shell(oldWorkbench.getShell().getDisplay(), SWT.NONE);
+	Display oldDisplay = shell.getDisplay();
+	
+	//重新创建一个Workbench
+	ActionContext ac = new ActionContext();
+	ac.put("parent", shell.getDisplay());
+	thing.doAction("run", ac);
+			
+	//关闭之前的
+	oldWorkbench.exit();
+	shell.dispose();
+	
+	try{
+	    if(oldDisplay.getShells().length == 0){
+	        oldDisplay.dispose();
+	    }
+	}catch(Exception e){
+	}]]></code>
+                            </GroovyAction>
+                        </Listener>
+                    </listeners>
+                </MenuItem>
+                <MenuItem name="exitMenuItem" text="lang:d=退出&amp;en=Exit">
+                    <listeners>
+                        <Listener name="exitMenuItemSelection">
+                            <GroovyAction name="GroovyAction" descriptors="xworker.lang.actions.GroovyAction">
+                                <code><![CDATA[//当有编辑器未保存时，不退出
+if(workbench.getEditorContainer() != null && workbench.getEditorContainer().isDirty()){
+    saveDialog(actionContext);
+    return;
+}
+
+workbench.exit();
+
+System.exit(0);]]></code>
+                            </GroovyAction>
+                        </Listener>
+                    </listeners>
+                </MenuItem>
+            </Menu>
+        </MenuItem>
+    </Menu>
+    <actions>
+        <Begin name="init">
+            <actions>
+                <StartRegistThingCache name="StartRegistThingCache" descriptors="xworker.dataObject.actions.DataObjectActions/@StartRegistThingCache"></StartRegistThingCache>
+            </actions>
+        </Begin>
+    </actions>
+</Workbench>

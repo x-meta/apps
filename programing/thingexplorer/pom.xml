@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+  
+    <artifactId>yourproject</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <groupId>org.xworker</groupId>
+  
+    <name>yourprojectname</name>
+    <build>
+        <plugins>
+		    <plugin> 
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-clean-plugin</artifactId> 
+				<version>2.4.1</version> 
+				<configuration> 
+				 <followSymLinks>false</followSymLinks> 
+				 <filesets> 
+				  <fileset> 
+				   <directory>${basedir}/lib/mvn</directory> 
+				  </fileset> 
+				  <fileset> 
+				   <directory>${basedir}/lib_rap/</directory> 
+				  </fileset> 
+				 </filesets> 
+				</configuration> 
+			</plugin> 
+            <!-- 拷贝依赖的jar包到lib目录 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.basedir}/lib/mvn/
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+			<groupId>org.xworker</groupId>
+			<artifactId>xworker_explorer</artifactId>
+			<version>1.4.4-SNAPSHOT</version>
+		</dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>sonatype</id>
+            <name>sonatype Repository</name>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+</project>

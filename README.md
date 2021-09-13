@@ -45,6 +45,6 @@ dml.cmd Workench.dml
 
 - setupenv.cmd或setupenv.sh
 
-把当前的应用作为系统即的开发平台，需要管理员权限来执行。
+把当前的应用作为系统级的开发平台，需要管理员权限来执行。
 
 这个命令执行后会把dml.cmd或dml.sh加入到系统路径下，如有可能还会把*.dml文件和dml.cmd或dml.sh关联，从而可以直接执行dml命令或直接执行*.dml文件。

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Composite name="Welcome" _xmeta_id_="503" descriptors="xworker.swt.widgets.Composite">
+    <FillLayout name="FillLayout"></FillLayout>
+    <ThingDescBrowser name="ThingDescBrowser">
+        <description><![CDATA[<h1>欢迎</h1>
+
+<p>&nbsp;&nbsp;&nbsp;欢迎使用工作台模型。本应用就是使用工作台模型编写的，默认情况下本工作台模型已经打开，你可以编辑它然后通过菜单文件-&gt;重启来查看修改后的效果。</p>
+
+<h1>Welcome</h1>
+
+<p>&nbsp;&nbsp;&nbsp; Welcome to the workbench model. This application is written using the workbench model. By default, the workbench model is open. You can edit it, and then view the modified effect through menu File - &gt; Restart.</p>
+]]></description>
+    </ThingDescBrowser>
+</Composite>

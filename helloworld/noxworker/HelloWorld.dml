@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<Person name="HelloWorld">
+    <actions>
+        <JavaAction name="run" useOuterJava="false" className="HelloWorld" methodName="run">
+            <code><![CDATA[import org.xmeta.ActionContext;
+
+public class HelloWorld{
+    public static void run(ActionContext actionContext){
+        System.out.println("Hello World!");
+    }
+}]]></code>
+        </JavaAction>
+    </actions>
+</Person>

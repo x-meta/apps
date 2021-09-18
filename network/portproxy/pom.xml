@@ -52,34 +52,14 @@
     <dependencies>
         <dependency>
 		    <groupId>org.xworker</groupId>
-		    <artifactId>xworker_swt_thingeditor</artifactId>
-		    <version>1.4.5-SNAPSHOT</version>
+		    <artifactId>xworker_startup</artifactId>
+		    <version>1.0.1-SNAPSHOT</version>
 	    </dependency>
 		<dependency>
 		    <groupId>org.xworker</groupId>
-			<artifactId>xworker_webserver</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
+			<artifactId>xworker_net</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-            <groupId>org.xworker</groupId>
-            <artifactId>xworker_netty</artifactId>
-            <version>4.1.45.Final-SNAPSHOT</version>
-        </dependency>
-		<dependency>
-            <groupId>org.xworker</groupId>
-            <artifactId>xworker_protobuf</artifactId>
-            <version>3.11.6-SNAPSHOT</version>
-        </dependency>
-		<dependency>
-            <groupId>org.xworker</groupId>
-            <artifactId>xworker_app</artifactId>
-            <version>1.4.5-SNAPSHOT</version>
-        </dependency>
-		<dependency>
-            <groupId>org.xworker</groupId>
-            <artifactId>xworker_web_bootstrap</artifactId>
-            <version>1.0.2-SNAPSHOT</version>
-        </dependency>
     </dependencies>
     <repositories>
         <repository>

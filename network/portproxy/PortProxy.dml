@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<SocketProxy name="SocketProxy" descriptors="xworker.net.socket.SocketProxy" port="8999"
+     proxyHost="www.baidu.com" proxyPort="80" saveData="true" saveDataPath="./work/datas/"/>

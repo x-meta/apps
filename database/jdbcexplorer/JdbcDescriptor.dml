@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<thing name="JdbcDescriptor" _xmeta_id_="207" descriptors="xworker.lang.MetaDescriptor3">
+    <thing name="group" label="分组" extends="JdbcDescriptor" en_label="Group"></thing>
+    <thing name="DataSource" extends="xworker.db.jdbc.DataSource"></thing>
+</thing>

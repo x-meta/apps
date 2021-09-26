@@ -1,0 +1,1 @@
+dml.cmd xworker.app.appmanager.swt.AppManagerNew

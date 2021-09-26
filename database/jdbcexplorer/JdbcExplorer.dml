@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Workbench descriptors="xworker.swt.app.Workbench">
+    <Views>
+        <View name="outline" id="outline" type="right" composite="xworker.swt.app.views.Outline/@outlineMainComposite"
+             closeable="false"></View>
+        <View name="console" id="console" type="bottom" composite="xworker.swt.component.components.ProcessManager"
+             closeable="false"></View>
+        <View name="dataSources" _xmeta_id_="DataSources" label="DataSources" id="DataSources"
+             type="left" closeable="false">
+            <Composite label="数据源" en_label="DataSources">
+                <FillLayout name="FillLayout"></FillLayout>
+                <Tree name="tree" FULL_SELECTION="false" HIDE_SELECTION="false" lineVisible="false"
+                     multipleColumns="false" headerVisible="false" sortIndicator="false"
+                     moveableColumns="false">
+                    <ThingTreeEditor name="thingTreeEditor" _xmeta_id_="ThingTableEditor" descriptors="xworker.swt.xworker.ThingTreeEditor"
+                         showRoot="false">
+                        <actions descriptors="xworker.lang.MetaThing/@actions">
+                            <getThingIfNotExistsCreate name="getThing" descriptors="xworker.lang.actions.utils.XWorkerActions/@getThingIfNotExistsCreate"
+                                 thing="DataSources" thingManager="_local" descriptor="JdbcDescriptor"></getThingIfNotExistsCreate>
+                        </actions>
+                    </ThingTreeEditor>
+                    <Listeners>
+                        <Listener name="treeDefaultSelection" _xmeta_id_="treeSelection"
+                             type="DefaultSelection">
+                            <GroovyAction descriptors="xworker.lang.actions.GroovyAction">
+                                <code><![CDATA[import xworker.workbench.WorkbenchUtils;
+
+def thing = event.item.getData();
+if(thing.getThingName() == "DataSource"){
+    openContentEditor(actionContext, "content", thing);
+}]]></code>
+                                <ActionDefined>
+                                    <OpenContentEditor name="openContentEditor" descriptors="xworker.swt.app.AppActions/@OpenContentEditor"
+                                         editorContainer="ognl:workbench.getEditorContainer()"
+                                         content="var:content"></OpenContentEditor>
+                                </ActionDefined>
+                            </GroovyAction>
+                        </Listener>
+                    </Listeners>
+                </Tree>
+            </Composite>
+        </View>
+    </Views>
+    <Menu>
+        <MenuItem name="fileMenuItem" text="lang:d=文件&amp;en=File" style="CASCADE">
+            <Menu name="fileMenu">
+                <MenuItem name="restartMenuItem" text="lang:d=重启&amp;en=Restart" style="PUSH">
+                    <listeners>
+                        <Listener name="restsartMenuItemSelection">
+                            <GroovyAction name="restart" descriptors="xworker.lang.actions.GroovyAction">
+                                <code><![CDATA[import org.xmeta.ActionContext;
+import org.xmeta.util.UtilResource;
+import org.xmeta.ui.session.SessionManager;
+
+import xworker.util.XWorkerUtils;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+//当有编辑器未保存时，不重启
+if(workbench.getEditorContainer() != null && workbench.getEditorContainer().isDirty()){
+    saveDialog(actionContext);
+    return;
+}
+
+//重新启动Workbench
+def thing =  workbench.getThing();
+def oldWorkbench = workbench;
+//为避免系统退出，先建一个shell，保证不会触发最后一个Shell退出时系统退出
+	Shell shell = new Shell(oldWorkbench.getShell().getDisplay(), SWT.NONE);
+	Display oldDisplay = shell.getDisplay();
+	
+	//重新创建一个Workbench
+	ActionContext ac = new ActionContext();
+	ac.put("parent", shell.getDisplay());
+	thing.doAction("run", ac);
+			
+	//关闭之前的
+	oldWorkbench.exit();
+	shell.dispose();
+	
+	try{
+	    if(oldDisplay.getShells().length == 0){
+	        oldDisplay.dispose();
+	    }
+	}catch(Exception e){
+	}]]></code>
+                                <ActionDefined>
+                                    <MessageBox name="saveDialog" descriptors="xworker.swt.actions.MessageBoxActions/@MessageBox"
+                                         shell="ognl:workbench.getShell()" icon="ICON_INFORMATION"
+                                         buttons="OK" title="lang:d=重启&amp;en=Restart" message="lang:d=重启前请先执行保存!&amp;en=Please do save before restart!"></MessageBox>
+                                </ActionDefined>
+                            </GroovyAction>
+                        </Listener>
+                    </listeners>
+                </MenuItem>
+                <MenuItem name="exitMenuItem" text="lang:d=退出&amp;en=Exit">
+                    <listeners>
+                        <Listener name="exitMenuItemSelection">
+                            <GroovyAction name="GroovyAction" descriptors="xworker.lang.actions.GroovyAction">
+                                <code><![CDATA[//当有编辑器未保存时，不退出
+if(workbench.getEditorContainer() != null && workbench.getEditorContainer().isDirty()){
+    saveDialog(actionContext);
+    return;
+}
+
+workbench.exit();
+
+System.exit(0);]]></code>
+                            </GroovyAction>
+                        </Listener>
+                    </listeners>
+                </MenuItem>
+            </Menu>
+        </MenuItem>
+    </Menu>
+    <CoolBar>
+        <CoolItem name="coolItem1">
+            <QuickToolbar name="quickToolbar">
+                <Item name="newToolItem" type="DROP_DOWN" image="icons/page_white.gif"
+                     actionContainer="ognl:workbench.getView(&quot;fileExplorer&quot;).getActionContext().get(&quot;actions&quot;)"
+                     actionName="createThingFile">
+                    <Menu name="newModelMenuItem" label="新建模型" en_label="New Model" actionContainer="ognl:workbench.getView(&quot;fileExplorer&quot;).getActionContext().get(&quot;actions&quot;)"
+                         actionName="createThingFile"></Menu>
+                    <Menu name="newFileMenuItem" label="新建文件" en_label="New File" actionContainer="ognl:workbench.getView(&quot;fileExplorer&quot;).getActionContext().get(&quot;actions&quot;)"
+                         actionName="createFile"></Menu>
+                    <Menu name="newDirectoryMenuITem" label="新建目录" en_label="New Directory"
+                         actionContainer="ognl:workbench.getView(&quot;fileExplorer&quot;).getActionContext().get(&quot;actions&quot;)"
+                         actionName="createDirectory"></Menu>
+                </Item>
+                <Item name="openToolItem" image="/xworker/ide/images/openThing.gif">
+                    <actions>
+                        <OpenShell name="run" _xmeta_id_="OpenShell" descriptors="xworker.swt.actions.ShellActionsNew/@OpenShell"
+                             shellPath="xworker.ide.worldexplorer.swt.dialogs.OpenThingDialog/@shell"
+                             singleInstance="true"></OpenShell>
+                    </actions>
+                </Item>
+                <ToolItem name="saveToolItem" descriptors="xworker.swt.widgets.ToolBar/@ToolItem"
+                     image="icons/xworker/save.gif">
+                    <listeners>
+                        <Listener>
+                            <SaveEditor name="SaveEditor" descriptors="xworker.swt.app.AppActions/@Save"
+                                 editorContainer="ognl:workbench.getEditorContainer()"></SaveEditor>
+                        </Listener>
+                    </listeners>
+                </ToolItem>
+            </QuickToolbar>
+        </CoolItem>
+        <CoolItem name="coolItem2">
+            <ToolBar name="toolbar2">
+                <ToolItem name="openBrowserToolItem" image="icons/world.png">
+                    <listeners>
+                        <Listener>
+                            <OpenView name="openWebBrowser" _xmeta_id_="openGroovyConsole" descriptors="xworker.swt.app.AppActions/@OpenView"
+                                 workbench="var:workbench" id="webbrowser" type="editor"
+                                 composite="xworker.ide.worldexplorer.swt.util.WebBrowser/@shell/@mainComposite"></OpenView>
+                        </Listener>
+                    </listeners>
+                </ToolItem>
+                <ToolItem name="openGroovyConsoleToolItem" image="icons/file/groovy.gif">
+                    <listeners>
+                        <Listener>
+                            <OpenView name="openGroovyConsole" descriptors="xworker.swt.app.AppActions/@OpenView"
+                                 workbench="var:workbench" id="groovyConsole" type="editor"
+                                 composite="xworker.ide.worldexplorer.swt.dialogs.GroovyScriptDialog/@shell/@mainComposite"></OpenView>
+                        </Listener>
+                    </listeners>
+                </ToolItem>
+                <ToolItem name="debugToolsITem" _xmeta_id_="openSwtExamplesViewToolsITem"
+                     image="icons/bug_edit.png" toolTiptext="lang:d=调试工具&amp;en=Debug Tools">
+                    <listeners>
+                        <Listener>
+                            <OpenView name="openDebugTools" _xmeta_id_="openGroovyConsole" descriptors="xworker.swt.app.AppActions/@OpenView"
+                                 workbench="var:workbench" id="debugTools" type="editor"
+                                 composite="xworker.ide.worldexplorer.swt.actions.DebugInfoEditor/@mainComposite"></OpenView>
+                        </Listener>
+                    </listeners>
+                </ToolItem>
+            </ToolBar>
+        </CoolItem>
+    </CoolBar>
+    <actions>
+        <Begin name="init">
+            <actions>
+                <StartRegistThingCache name="StartRegistThingCache" descriptors="xworker.dataObject.actions.DataObjectActions/@StartRegistThingCache"></StartRegistThingCache>
+                <Ognl name="startWebServer" expression="@xworker.webserver.XWorkerWebServer@run()"></Ognl>
+            </actions>
+        </Begin>
+        <Enable name="beforeCreate" descriptors="xworker.swt.design.DesignActions/@Enable">
+            <description><![CDATA[<p>激活SWT设计器，使用<strong>Ctrl+鼠标中键</strong>点击一个界面控件，可以弹出设计菜单，在设计菜单中可以选择打开该模型。</p>
+]]></description>
+        </Enable>
+    </actions>
+</Workbench>

@@ -8,8 +8,14 @@
 #### 1.1.视图
 视图是一些SWT的Composite控件，可以显示在视图区或编辑区。视图常常是一个固定的功能区，如基于树的导航菜单、文件结构树、概要和控制台等等。
 
+视图模型可以注册到xworker.workbench.Views模型下，注册的视图可以实现重用。
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0929/144143_d2e5db7f_493262.jpeg "workbench_views.jpg")
+
 #### 1.2.编辑器
 编辑器用于编辑内容的，如模型编辑器、文件编辑器等等，编辑器一般在编辑区打开。
+
+编辑器模型可以注册到xworker.workbench.Editors模型下，注册的编辑器可以实现重用。
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0929/144317_04d03ba9_493262.jpeg "workbench_editors.jpg")
 
 ### 2.运行工作台
 安装后，执行run.cmd或run.sh开打工作台。

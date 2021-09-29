@@ -45,6 +45,8 @@ JavaFX版本的模型编辑器，目前处于基本可用状态。
 
 根据引用的模型库的不同，以上命令可能同时存在，也有可能只有个别存在。
 
+如果一个应用没有导入模型编辑器，那么又想编辑它，可以在pom.xml加入模型编辑器的依赖，然后重新setup。要想导入模型编辑器，可以使用[SWT](http://https://gitee.com/xworker/apps/tree/master/programming/swt)。
+
 #### 2. 运行应用
 
 如果应用目录下存在run.cmd或run.sh，那么可以通过它直接运行当前应用。

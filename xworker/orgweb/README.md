@@ -1,3 +1,3 @@
-# Web Server
-基于Jetty的WebServer，实际是对Jetty模型的封装。
+# Orgweb
+为了XWorker网站自己编写的应用，界面风格参看
 

@@ -5,5 +5,5 @@
 安装后执行run.cmd或run.sh运行。
 
 ### 2.登录
-在浏览器中打开网址http://localhost:8080/do?sc=xworker.app.orgweb.web.admin.AdminLogin，用户名密码默认是admin/admin。
+在浏览器中打开网址[http://localhost:8080/do?sc=xworker.app.orgweb.web.admin.AdminLogin](http://localhost:8080/do?sc=xworker.app.orgweb.web.admin.AdminLogin)，用户名密码默认是admin/admin。
 

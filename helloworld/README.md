@@ -1,6 +1,6 @@
 # Hello World
 
-使用动态模型打印Hello World!的程序。
+使用动态模型在控制台打印Hello World!的程序。通过HelloWorld可以看到动态模型的代码可以是XML。
 
 ### noxworker
 noxworker表明不需要XWorker也可以进行模型编程。

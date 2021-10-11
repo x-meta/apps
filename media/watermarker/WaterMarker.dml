@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<Shell name="shell" descriptors="xworker.swt.widgets.Shell" text="图片加水印工具" width="800"
+     height="600" design="" label="ImageWaterMarker" th_createIndex="true" th_keywords="图片,水印">&#xd;
+    <FillLayout name="shellFillLayout"/>&#xd;
+    <Composite name="mainComposite">&#xd;
+        <GridLayout name="mainCompositeGridLayout"/>&#xd;
+        <Composite name="buttonComposite" _xmeta_id_="9121">&#xd;
+            <GridData name="buttonCompositeGridData" _xmeta_id_="9122" style="FILL_HORIZONTAL"/>&#xd;
+            <RowLayout name="buttonCompositeRowLayout" _xmeta_id_="9123"/>&#xd;
+            <Button name="loadImageButton" _xmeta_id_="9124" text="lang:d=打开图片&amp;en=Open Image">&#xd;
+                <RowData name="RowData" _xmeta_id_="9125" width="80"/>&#xd;
+                <Listeners _xmeta_id_="9126">&#xd;
+                    <Listener name="loadImageButtonSelection" _xmeta_id_="9127">&#xd;
+                        <Begin>&#xd;
+                            <actions>&#xd;
+                                <FileDialog name="openFile" descriptors="xworker.swt.actions.DialogActions/@FileDialog"
+                                     shell="ognl:mainComposite.getShell()" saveReturn="true"
+                                     returnVarName="fileName"/>&#xd;
+                                <GroovyAction name="setImage">&#xd;
+                                    <code><![CDATA[import xworker.swt.util.ResourceManager;
+
+if(actionContext.get("fileName") != null){
+    //选择的图片
+    actionContext.peek().put("parent", mainComposite);
+    def image = ResourceManager.createIamge(fileName, actionContext);
+    if(image != null){
+        imageCanvas.setImage(image);
+    }
+    actionContext.getScope(0).put("image", image);
+}]]></code>&#xd;
+                                </GroovyAction>&#xd;
+                            </actions>&#xd;
+                        </Begin>&#xd;
+                    </Listener>&#xd;
+                </Listeners>&#xd;
+            </Button>&#xd;
+            <Button name="saveImageButton" _xmeta_id_="9128" text="lang:d=保存图片&amp;en=Save Iamge">&#xd;
+                <RowData name="RowData" _xmeta_id_="9129" width="80"/>&#xd;
+                <Listeners _xmeta_id_="9130">&#xd;
+                    <Listener name="saveImageButtonSelection" _xmeta_id_="9131">&#xd;
+                        <Begin>&#xd;
+                            <actions>&#xd;
+                                <FileDialog name="FileDialog" descriptors="xworker.swt.actions.DialogActions/@FileDialog"
+                                     shell="ognl:saveImageButton.getShell()" style="SAVE"
+                                     overwrite="true" saveReturn="true" returnVarName="fileName"/>&#xd;
+                                <GroovyAction name="saveFile">&#xd;
+                                    <code><![CDATA[import xworker.swt.util.SwtUtils;
+
+if(actionContext.get("fileName") != null && actionContext.get("newImage") != null){
+    def file = new File(fileName);
+    SwtUtils.saveImage(newImage, file);
+}]]></code>&#xd;
+                                </GroovyAction>&#xd;
+                            </actions>&#xd;
+                        </Begin>&#xd;
+                    </Listener>&#xd;
+                </Listeners>&#xd;
+            </Button>&#xd;
+        </Composite>&#xd;
+        <ImageCanvas name="imageCanvas" autoFit="">&#xd;
+            <GridData name="imageCanvasGridData" style="FILL_BOTH"/>&#xd;
+        </ImageCanvas>&#xd;
+        <Composite name="generatorComposite">&#xd;
+            <GridData name="generatorCompositeGridData" style="FILL_HORIZONTAL"/>&#xd;
+            <GridLayout name="generatorCompositeGridLayout" numColumns="2"/>&#xd;
+            <ThingForm name="paramsForm">&#xd;
+                <GridData name="paramsFormGridData" style="FILL_HORIZONTAL"/>&#xd;
+                <thing name="Thing" descriptors="xworker.lang.MetaDescriptor3,xworker.swt.xworker.ThingForm/@Thing"
+                     label="ImageWaterMarker" editCols="3">&#xd;
+                    <description><![CDATA[<p>为图片添加文字水印，文字重复在图片上出现。</p>
+
+<p><strong>可以重写的方法：</strong></p>
+
+<ul>
+	<li><strong>getImage</strong><br />
+	返会图片文件File或文件图片路径，或Image对象。<br />
+	&nbsp;</li>
+	<li><strong>getSaveFile</strong><br />
+	返表示图片路径的File或字符串</li>
+</ul>
+
+<p><strong>支持的格式有：</strong></p>
+
+<ul>
+	<li>&nbsp;&nbsp;SWT.IMAGE_BMP</li>
+	<li>&nbsp;&nbsp;SWT.IMAGE_GIF</li>
+	<li>&nbsp;&nbsp;SWT.IMAGE_ICO</li>
+	<li>&nbsp;&nbsp;SWT.IMAGE_JPEG</li>
+	<li>&nbsp;&nbsp;SWT.IMAGE_PNG</li>
+	<li>&nbsp;&nbsp;SWT.IMAGE_TIFF</li>
+</ul>]]></description>&#xd;
+                    <attribute name="text" label="文字" size="60" colspan="3" labelAlign="" labelVAlign=""
+                         modifier="" en_label="Text"/>&#xd;
+                    <attribute name="font" label="字体" inputtype="fontSelect" labelAlign=""
+                         labelVAlign="" modifier="" en_label="Font"/>&#xd;
+                    <attribute name="color" label="颜色" inputtype="colorpicker" labelAlign=""
+                         labelVAlign="" modifier="" en_label="Color"/>&#xd;
+                    <attribute name="degree" _xmeta_id_="angle" label="角度" inputtype="select"
+                         labelAlign="" labelVAlign="" modifier="" default="-45" en_label="Degree">&#xd;
+                        <value name="-90" _xmeta_id_="45" value="-90"/>&#xd;
+                        <value name="-45" _xmeta_id_="90" value="-45"/>&#xd;
+                        <value name="45" _xmeta_id_="451" value="45"/>&#xd;
+                        <value name="90" _xmeta_id_="901" value="90"/>&#xd;
+                    </attribute>&#xd;
+                    <attribute name="alpha" label="透明度" labelAlign="" labelVAlign="" modifier=""
+                         default="40" en_label="Alpha"/>&#xd;
+                    <attribute name="hgap" label="水平间隔" labelAlign="" labelVAlign="" modifier=""
+                         default="3" description="&lt;p>为文字长度的倍数。&lt;/p>" en_label="HGap"/>&#xd;
+                    <attribute name="vgap" label="垂直间隔" inputtype="text" labelAlign="" labelVAlign=""
+                         modifier="" default="5" description="&lt;p>为文字高度的倍数。&lt;/p>" en_label="VGap"/>&#xd;
+                </thing>&#xd;
+            </ThingForm>&#xd;
+            <Button name="previewButton" text="lang:d=预览&amp;en=Preview">&#xd;
+                <GridData name="previewButtonGridDAta" grabExcessVerticalSpace="true"/>&#xd;
+                <Listeners>&#xd;
+                    <Listener>&#xd;
+                        <GroovyAction name="preview">&#xd;
+                            <code><![CDATA[import org.xmeta.Thing;
+import xworker.swt.util.SwtUtils;
+import xworker.swt.util.ResourceManager;
+
+def oldNewImage = actionContext.get("newImage");
+
+//获取参数
+def values = paramsForm.doAction("getValues", actionContext);
+def waterMarker = new Thing("xworker.swt.util.graphics.ImageWaterMarker");
+waterMarker.getAttributes().putAll(values);
+waterMarker.put("image", "var:image");
+waterMarker.put("returnImage", "true");
+
+def newImage = waterMarker.doAction("run", actionContext, ["image": image]);
+imageCanvas.setImage(newImage);
+actionContext.getScope(0).put("newImage", newImage);
+
+if(oldNewImage != null){
+    oldNewImage.dispose();
+}]]></code>&#xd;
+                        </GroovyAction>&#xd;
+                    </Listener>&#xd;
+                    <Listener name="disposeListener" type="Dispose">&#xd;
+                        <GroovyAction name="dispose">&#xd;
+                            <code><![CDATA[def oldNewImage = actionContext.get("newImage");
+if(oldNewImage != null){
+    oldNewImage.dispose();
+}]]></code>&#xd;
+                        </GroovyAction>&#xd;
+                    </Listener>&#xd;
+                </Listeners>&#xd;
+            </Button>&#xd;
+        </Composite>&#xd;
+    </Composite>&#xd;
+</Shell>

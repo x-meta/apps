@@ -1,0 +1,87 @@
+^1632656777324
+@
+sname
+JdbcDescriptor
+sdescriptors
+JdbcDescriptor
+sinheritDescription
+false
+sth_createIndex
+false
+sth_registMyChilds
+false
+sth_registDisabled
+false
+sth_noThingRegistViewer
+false
+sth_fileMonitor
+false
+sth_mark
+false
+sth_registQueryOnlySelf
+false
+snotXmlAttribute
+false
+sjson_isArray
+false
+  @/@xworker_app
+  sname
+  xworker_app
+  stype
+  HikariCP
+  sdbType
+  sqlite
+  sdrivers
+  15
+  sdriver_class
+  org.sqlite.JDBC
+  surl
+  template:jdbc:sqlite:${world.path}/databases/sqlite/xworker_app.db
+  sinitPoolSize
+  3
+  sminPoolSize
+  3
+  smaxPoolSize
+  15
+  smaxIdleTime
+  0
+  sacquireIncrement
+  3
+  stestOnCheckOut
+  false
+  stestOnCheckIn
+  false
+  stestWhileIdle
+  false
+  sacquireRetryAttempts
+  30
+  sacquireRetryDelay
+  1000
+  sbreakAfterAcquireFailure
+  false
+  sdebugUnreturnedConnectionStackTraces
+  false
+  sdescriptors
+  JdbcDescriptor/@DataSource
+  sinheritDescription
+  false
+  sth_createIndex
+  false
+  sth_registMyChilds
+  false
+  sth_registDisabled
+  false
+  sth_noThingRegistViewer
+  false
+  sth_fileMonitor
+  false
+  sth_mark
+  false
+  sth_registQueryOnlySelf
+  false
+  snotXmlAttribute
+  false
+  sjson_isArray
+  false
+  sid
+  xworker_app

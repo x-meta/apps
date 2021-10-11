@@ -41,6 +41,7 @@ if(thing.getThingName() == "DataSource"){
                 </Tree>
             </Composite>
         </View>
+        <View name="xworkerExplorer" id="xworkerExplorer" type="left" composite="xworker.swt.app.views.ProjectTree/@tree"></View>
     </Views>
     <Menu>
         <MenuItem name="fileMenuItem" text="lang:d=文件&amp;en=File" style="CASCADE">
@@ -118,17 +119,6 @@ System.exit(0);]]></code>
     <CoolBar>
         <CoolItem name="coolItem1">
             <QuickToolbar name="quickToolbar">
-                <Item name="newToolItem" type="DROP_DOWN" image="icons/page_white.gif"
-                     actionContainer="ognl:workbench.getView(&quot;fileExplorer&quot;).getActionContext().get(&quot;actions&quot;)"
-                     actionName="createThingFile">
-                    <Menu name="newModelMenuItem" label="新建模型" en_label="New Model" actionContainer="ognl:workbench.getView(&quot;fileExplorer&quot;).getActionContext().get(&quot;actions&quot;)"
-                         actionName="createThingFile"></Menu>
-                    <Menu name="newFileMenuItem" label="新建文件" en_label="New File" actionContainer="ognl:workbench.getView(&quot;fileExplorer&quot;).getActionContext().get(&quot;actions&quot;)"
-                         actionName="createFile"></Menu>
-                    <Menu name="newDirectoryMenuITem" label="新建目录" en_label="New Directory"
-                         actionContainer="ognl:workbench.getView(&quot;fileExplorer&quot;).getActionContext().get(&quot;actions&quot;)"
-                         actionName="createDirectory"></Menu>
-                </Item>
                 <Item name="openToolItem" image="/xworker/ide/images/openThing.gif">
                     <actions>
                         <OpenShell name="run" _xmeta_id_="OpenShell" descriptors="xworker.swt.actions.ShellActionsNew/@OpenShell"

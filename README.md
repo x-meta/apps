@@ -71,6 +71,6 @@ dml.cmd Workench.dml
 这个命令执行后会把dml.cmd或dml.sh加入到系统路径下，如有可能还会把*.dml文件和dml.cmd或dml.sh关联，从而可以直接执行dml命令或直接执行*.dml文件。
 
 ### Thing Explorer
-位于/programming/thingexplorer的应用可以作为总的动态模型的开发平台。相比swt、web和javafx几个模型编辑器只引用了相关的模型库，而thingexplorer引用了XWorker中几乎所有的不会冲突的模型库，可以把它作为总的动态模型开发平台。
+位于/ide/thingexplorer的应用可以作为总的动态模型的开发平台。相比swt、web和javafx几个模型编辑器只引用了相关的模型库，而thingexplorer引用了XWorker中几乎所有的不会冲突的模型库，可以把它作为总的动态模型开发平台。
 
 如要把thingexplorer作为总的开发平台，可以执行它下面的setupenv.cmd或setupenv.sh。

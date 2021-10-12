@@ -8,7 +8,7 @@ Some applications written using dynamic model and xworker's model library.
 - Many applications here may not be very mature. If possible, please participate in the development and improvement together.
 
 ### Installation tutorial
-[Java] required（ https://www.oracle.com/java/technologies/ ）And [Maven]（ https://maven.apache.org/ ）, please install Java and Maven by yourself. You need to be able to directly execute Java and MVN commands in the system terminal.
+Required [Java](https://www.oracle.com/java/technologies/) and [Maven](https://maven.apache.org/), please install Java and Maven by yourself. You need to be able to directly execute **java** and **mvn** commands in the system terminal.
 
 #### 1. Installation
 - 1) clone or download the project to a directory.

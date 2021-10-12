@@ -56,5 +56,5 @@ Taking the current application as a system level development platform requires a
 After the command is executed, dml.cmd or dml.sh will be added to the system path. If possible, the *. DML file will be associated with dml.cmd or dml.sh, so that the DML command or *. DML file can be executed directly.
 
 ### Thing Explorer
-The application located in / programming / thingeexplorer can be used as the development platform of the overall dynamic model. Compared with SWT, web and JavaFX, several model editors only refer to relevant model libraries, while thingeexplorer refers to almost all non conflicting model libraries in xworker, which can be used as the general dynamic model development platform.
+The application located in /ide/thingeexplorer can be used as the development platform of the overall dynamic model. Compared with SWT, web and JavaFX, several model editors only refer to relevant model libraries, while thingeexplorer refers to almost all non conflicting model libraries in xworker, which can be used as the general dynamic model development platform.
 To use thingeexplorer as the general development platform, you can execute setupenv.cmd or setupenv.sh below it.

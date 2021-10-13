@@ -51,20 +51,15 @@
     </build>
     <dependencies>
         <dependency>
-		   <groupId>org.xworker</groupId>
-		   <artifactId>xworker_web_thingeditor</artifactId>
-		   <version>1.0.2-SNAPSHOT</version>
-	   </dependency>
-        <dependency>
-            <groupId>org.xworker</groupId>
-            <artifactId>xworker_app</artifactId>
-            <version>1.4.5-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.xworker</groupId>
-            <artifactId>xworker_webserver</artifactId>
-            <version>1.0.2-SNAPSHOT</version>
-        </dependency>
+		    <groupId>org.xworker</groupId>
+		    <artifactId>xworker_swt_thingeditor</artifactId>
+		    <version>1.4.5-SNAPSHOT</version>
+	    </dependency>
+		<dependency>
+		    <groupId>org.xworker</groupId>
+			<artifactId>xworker_webserver</artifactId>
+			<version>1.0.2-SNAPSHOT</version>
+		</dependency>
     </dependencies>
     <repositories>
         <repository>

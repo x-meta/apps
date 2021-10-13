@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Shell name="shell" descriptors="xworker.swt.widgets.Shell" text="Hello World"
+     label="Shell">
+    <RunAction>
+        <StartRegistThingCache name="StartRegistThingCache" descriptors="xworker.dataObject.actions.DataObjectActions/@StartRegistThingCache"></StartRegistThingCache>
+        <SetLocale name="setLocal" descriptors="xworker.ide.worldexplorer.actions.ExplorerActions/@SetLanguage"/>
+        <GetWebUrl name="GetWebUrl" descriptors="xworker.ide.worldexplorer.actions.ExplorerActions/@GetWebUrl"></GetWebUrl>
+    </RunAction>
+</Shell>

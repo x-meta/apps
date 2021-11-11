@@ -10,7 +10,7 @@
 - 这里的应用很多可能并不是很成熟，如有可能请参与一起开发和完善。
 
 ### 安装教程
-需要[Java](https://www.oracle.com/java/technologies/)和[Maven](https://maven.apache.org/)，请自行安装Java和Maven，需要在系统终端里能够直接执行java和mvn两个命令。
+需要[Java 1.8或以上](https://www.oracle.com/java/technologies/)和[Maven](https://maven.apache.org/)，请自行安装Java和Maven，需要在系统终端里能够直接执行java和mvn两个命令。
 
 #### 1. 安装
 

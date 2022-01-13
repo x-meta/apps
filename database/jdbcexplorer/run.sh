@@ -1,1 +1,1 @@
-./dml.sh JdbcExplorer.dml
+./dml.sh JdbcExplorer

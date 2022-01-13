@@ -1,1 +1,1 @@
-./dml.sh xworker.net.jsch.swt.JCtermWorkbench run
+./dml.sh xworker.jsch.swt.JCtermWorkbench run

@@ -1,1 +1,1 @@
-java -cp ./lib/mvn/org.xmeta.engine-1.4.6-SNAPSHOT.jar org.xmeta.util.ThingRunner ./ ./HelloWorld.dml run
+java -cp ./lib/mvn/org.xmeta.engine-1.4.6.jar org.xmeta.util.ThingRunner ./ ./HelloWorld.dml run

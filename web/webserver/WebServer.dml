@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<JettyServer name="WebServer" descriptors="xworker.http.server.jetty.JettyServer" port="8080"
+<JettyServer name="WebServer" descriptors="xworker.jetty.JettyServer" port="8080"
      variables="port,webroot" keyStore="xworker:config/ssl/server.jks" keyStorePassword="xworker">
     <Handlers>
         <WebAppContext name="root" contextPath="/" webApp="var:webroot" resourceBase="./webroot/"  dirAllowed="true"></WebAppContext>

@@ -50,15 +50,15 @@
         </plugins>
     </build>
     <dependencies>
-	    <dependency>
+        <dependency>
 		    <groupId>org.xworker</groupId>
-			<artifactId>xworker_startup</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
-		</dependency>
-	    <dependency>
+		    <artifactId>xworker_swt_thingeditor</artifactId>
+		    <version>2.0.0-SNAPSHOT</version>
+	    </dependency>
+		<dependency>
 		    <groupId>org.xworker</groupId>
-			<artifactId>xworker_lang</artifactId>
-			<version>1.4.5-SNAPSHOT</version>
+			<artifactId>xworker_webserver</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
 		</dependency>
     </dependencies>
     <repositories>

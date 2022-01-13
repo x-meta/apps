@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<UiFlow name="UIFlow" descriptors="xworker.lang.flow.uiflow.UiFlow" runMethod="design">
+<UiFlow name="UIFlow" descriptors="xworker.uiflow.UiFlow" runMethod="design">
     <Start name="newStart" _xmeta_id_="423" x="221" y="76" nextNode="UIFlow/@440"></Start>
     <ThingRegistSelector name="newThingRegistSelector" _xmeta_id_="440" registThing="xworker.lang.util.ThingIndex"
          x="151" y="195">

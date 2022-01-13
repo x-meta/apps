@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<DataSource name="DataSource" descriptors="xworker.db.jdbc.utils.JdbcActions/@InitDatabase/@DataSource,xworker.db.jdbc.DataSource"
+<DataSource name="DataSource" descriptors="xworker.lang.db.jdbc.utils.JdbcActions/@InitDatabase/@DataSource,xworker.db.jdbc.DataSource"
      label="AppManager" dbType="sqlite" drivers="15" driver_class="org.sqlite.JDBC" url="template:jdbc:sqlite:${world.path}/databases/sqlite/xworker_app.db"
-     checkoutTimeout="3000" th_createIndex="true" th_registThing="child|xworker.ui.db.datasource.JdbcDatasourceRegistor"
+     checkoutTimeout="3000" th_createIndex="true" th_registThing="child|xworker.function.ui.db.datasource.JdbcDatasourceRegistor"
      group="xworker.应用管理"></DataSource>

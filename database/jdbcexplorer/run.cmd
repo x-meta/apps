@@ -1,1 +1,1 @@
-dml.cmd JdbcExplorer.dml
+dml.cmd JdbcExplorer

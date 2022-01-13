@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<FunctionAction name="TestUiFunction" descriptors="xworker.lang.function.FunctionAction">&#xd;
+<FunctionAction name="TestUiFunction" descriptors="xworker.function.FunctionAction">&#xd;
     <Function name="Function"/>&#xd;
 </FunctionAction>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<NettyServer name="HttpServerExample" _xmeta_id_="DemoNettyServer" descriptors="xworker.netty.NettyServer"
+     port="8080">
+    <Handlers>
+        <HttpServerCodec name="HttpServerCodec"/>
+        <HttpObjectAggregator name="HttpObjectAggregator" maxContentLength="314572800"/>
+        <WebSocketServerCompressionHandler name="WebSocketServerCompressionHandler"/>
+        <WebSocketServerProtocolHandler name="WebSocketServerProtocolHandler" websocketPath="/socket" allowExtensions="false"/>
+        <ChunkedWriteHandler name="ChunkedWriteHandler"/>
+        <WebSocketFrameHandler>
+            <actions descriptors="MetaThing/@actions">
+                <GroovyAction name="onText" _xmeta_id_="onTextMessage">
+                    <code><![CDATA[import java.text.SimpleDateFormat;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+
+def sf = new SimpleDateFormat("HH:mm:ss");
+def message = frame.text();
+//println text;
+def response = alice(actionContext, "message", message);
+
+//println response;
+if(response != null){
+    TextWebSocketFrame data = new TextWebSocketFrame(response);
+    ctx.writeAndFlush(data);
+}]]></code>
+                    <ActionDefined>
+                        <Alice name="alice" descriptors="xworker.ai.chatterbean.Alice"/>
+                    </ActionDefined>
+                </GroovyAction>
+            </actions>
+        </WebSocketFrameHandler>
+        <HttpServerHandler>
+            <SimpleControl name="helloworld" descriptors="xworker.netty.handlers.http.HttpServerHandlers/@SimpleControl"
+                 pathRegex="/helloworld" contextPath="/">
+                <view>
+                    <htmlCode name="htmlCode">
+                        <htmlCode><![CDATA[<p>Hello world!</p>
+]]></htmlCode>
+                    </htmlCode>
+                </view>
+                <result name="success" value="xworker.netty.doc.examples.HttpServerExample/@DemoNettyServer/@Handlers/@HttpServerHandler/@helloworld/@view"/>
+            </SimpleControl>
+            <SimpleControl name="SimpleControl" descriptors="xworker.netty.handlers.http.HttpServerHandlers/@SimpleControl"
+                 pathRegex="/do.*" contextPath="/"/>
+            <StaticFile name="StaticFile" pathRegex=".*" contextPath="/" fileRoot="xworker:webroot"/>
+        </HttpServerHandler>
+    </Handlers>
+    <Handler>
+        <LoggingHandler name="LoggingHandler" loggerName="Test"/>
+    </Handler>
+</NettyServer>

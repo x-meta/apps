@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<Shell name="shell" descriptors="xworker.swt.widgets.Shell,xworker.swt.widgets.Composite"
+     text="ApplicationExample" RESIZE="false" label="Application">&#xd;
+	    
+    <FillLayout name="FillLayout"/>&#xd;
+    <Composite label="Application">&#xd;
+        <GridLayout name="GridLayout"/>&#xd;
+        <Button name="setButton" text="lang:d=设置样式&amp;en=Set Theme">&#xd;
+            <Event name="onSelection">&#xd;
+                <ThingRegistorDialog descriptors="xworker.swt.actions.MessageBoxActions/@ThingRegistorDialog"
+                     title="lang:d=选择样式&amp;en=Select Theme" shell="ognl:setButton.getShell()"
+                     thing="xworker.swt.app.Applications" registType="child">&#xd;
+                    <GroovyAction name="ok" descriptors="xworker.lang.actions.Actions/@GroovyAction">&#xd;
+                        <code><![CDATA[if(thing != null){
+    application.setTheme(thing);
+}]]></code>&#xd;
+                    </GroovyAction>&#xd;
+                </ThingRegistorDialog>&#xd;
+            </Event>&#xd;
+        </Button>&#xd;
+        <Application name="application" _xmeta_id_="Application" title="lang:d=应用示例&amp;en=Application Example"
+             application="xworker.swt.app.Applications/@SimpleExpandBarApp">&#xd;
+			  <actions>
+        <Begin name="beforeCreate">
+            <actions>
+                <GetWebUrl name="GetWebUrl" descriptors="xworker.ide.worldexplorer.actions.ExplorerActions/@GetWebUrl"/>
+                <StartRegistThingCache name="StartRegistThingCache" descriptors="xworker.dataObject.actions.DataObjectActions/@StartRegistThingCache"/>
+            </actions>
+        </Begin>
+    </actions>
+            <ShellItems>&#xd;
+                <Folder name="file" label="文件">&#xd;
+                    <Action name="swtBox" label="MessageBox" icon="none">&#xd;
+                        <MessageBox name="MessageBox" descriptors="xworker.swt.actions.MessageBoxActions/@MessageBox"
+                             shell="var:shell" title="lang:d=西澳西&amp;en=Message" message="lang:d=这是一个消息！&amp;en=This is a message!"/>&#xd;
+                    </Action>&#xd;
+                    <Separator name="Separator"/>&#xd;
+                    <Groovy name="groovy" label="Groovy" code="println &quot;Hello World!&quot;;"/>&#xd;
+                </Folder>&#xd;
+                <Folder name="editor" label="编辑器">&#xd;
+                    <QuickContent name="quickContent" label="QuickContent" quickContent="xworker.example.swt.SwtExamples/@23970"/>&#xd;
+                    <Composite name="DashBoard" _xmeta_id_="Composite" composite="xworker.example.swt.xwidgets.BootstrapExample/@Composite"/>&#xd;
+                </Folder>&#xd;
+            </ShellItems>&#xd;
+            <MainItems descriptors="xworker.swt.app.Application/@MainItems,xworker.swt.app.Application/@ShellItems">&#xd;
+                <Folder name="file" label="文件" extends="xworker.example.swt.app.ApplicationExample/@Composite/@Application/@ShellItems/@file"
+                     showLabel="false"/>&#xd;
+                <Folder name="editor" label="编辑器" extends="xworker.example.swt.app.ApplicationExample/@Composite/@Application/@ShellItems/@editor"/>&#xd;
+            </MainItems>&#xd;
+            <TopLeftItems descriptors="xworker.swt.app.Application/@TopLeftItems,xworker.swt.app.Application/@ShellItems">&#xd;
+                <Folder name="file" label="文件" extends="xworker.example.swt.app.ApplicationExample/@Composite/@Application/@ShellItems/@file"
+                     icon="none"/>&#xd;
+                <Composite name="DashBoard" _xmeta_id_="Composite" composite="xworker.example.swt.xwidgets.BootstrapExample/@Composite"
+                     icon="none"/>&#xd;
+            </TopLeftItems>&#xd;
+            <TopRightItems descriptors="xworker.swt.app.Application/@TopRightItems,xworker.swt.app.Application/@ShellItems">&#xd;
+                <Folder name="file" label="文件" extends="xworker.example.swt.app.ApplicationExample/@Composite/@Application/@ShellItems/@file"
+                     showLabel="false"/>&#xd;
+                <Composite name="DashBoard" _xmeta_id_="Composite" composite="xworker.example.swt.xwidgets.BootstrapExample/@Composite"
+                     showLabel="false"/>&#xd;
+            </TopRightItems>&#xd;
+            <LayoutDatas>&#xd;
+                <GridData name="GridData" style="FILL_BOTH"/>&#xd;
+            </LayoutDatas>&#xd;
+        </Application>&#xd;
+    </Composite>&#xd;
+</Shell>
